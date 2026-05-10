@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Shahiryar Siddique, AI Agent Developer & Automation Specialist based in Islamabad, Pakistan.">
+  <title>Shahiryar Siddique | AI Agent Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1814;
+      --ink: #1a1814;
+      --ink3: #6f675b;
+      --accent: #c8a96e;
+      --status: #2d6a4f;
+      --surface: #fbf9f4;
+      --border: #e9e1d4;
+      --surface-border: #e9e1d4;
+      --muted: #6f675b;
+      --dark-surface: #171510;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(26, 24, 20, 0.08);
+      --radius: 16px;
+      --max: 1140px;
+      --nav-h: 74px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Geist", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image: radial-gradient(circle at 1px 1px, rgba(26, 24, 20, 0.35) 1px, transparent 0);
+      background-size: 4px 4px;
+      z-index: 999;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .label {
+      display: inline-block;
+      font-family: "Geist Mono", monospace;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .section-title {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      margin-bottom: 1rem;
+    }
+
+    .section-intro {
+      max-width: 62ch;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(26, 24, 20, 0.08);
+      backdrop-filter: blur(10px);
+      background: rgba(247, 245, 240, 0.75);
+    }
+
+    .nav-inner {
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.93rem;
+      color: var(--muted);
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 0.3rem 0.1rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.35rem;
+      margin: auto;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text);
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 999px;
+      padding: 0.78rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.93rem;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      background: #11100e;
+    }
+
+    .btn-outline {
+      border-color: rgba(26, 24, 20, 0.22);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text);
+      background: rgba(255, 255, 255, 0.65);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-h) + 2rem);
+      padding-bottom: 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(2.6rem, 9vw, 5.6rem);
+      line-height: 0.96;
+      letter-spacing: 0.01em;
+      max-width: 12ch;
+    }
+
+    .hero-subtitle {
+      margin-top: 1.3rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2.2vw, 1.15rem);
+      max-width: 60ch;
+    }
+
+    .availability {
+      margin-top: 1.35rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      background: rgba(45, 106, 79, 0.09);
+      border: 1px solid rgba(45, 106, 79, 0.22);
+      color: var(--status);
+      border-radius: 999px;
+      padding: 0.36rem 0.8rem;
+      font-size: 0.87rem;
+      font-family: "Geist Mono", monospace;
+    }
+
+    .status-dot {
+      width: 0.58rem;
+      height: 0.58rem;
+      border-radius: 999px;
+      background: var(--status);
+      box-shadow: 0 0 0 rgba(45, 106, 79, 0.6);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.5);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(45, 106, 79, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(45, 106, 79, 0);
+      }
+    }
+
+    .hero-actions {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .scroll-indicator {
+      margin-top: 2.2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-family: "Geist Mono", monospace;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .scroll-indicator::before {
+      content: "";
+      width: 1.9rem;
+      height: 1px;
+      background: rgba(26, 24, 20, 0.35);
+      display: block;
+    }
+
+    .services-grid,
+    .steps-grid,
+    .stats-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .service-card {
+      grid-column: span 6;
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 1.3rem;
+      box-shadow: var(--shadow);
+    }
+
+    .service-card h3 {
+      font-size: 1.12rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .project-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .project-item {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .project-name {
+      font-weight: 600;
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .project-links {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+
+    .project-link {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink3);
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .project-link:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .project-meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-status {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 0.26rem 0.65rem;
+      border: 1px solid rgba(45, 106, 79, 0.35);
+      color: var(--status);
+      background: rgba(45, 106, 79, 0.08);
+    }
+
+    .project-status.progress {
+      color: #8a5a0a;
+      border-color: rgba(138, 90, 10, 0.32);
+      background: rgba(200, 169, 110, 0.14);
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .step-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1.1rem;
+    }
+
+    .step-number {
+      font-family: "Geist Mono", monospace;
+      color: var(--accent);
+      font-size: 0.78rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .step-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.05rem;
+    }
+
+    .step-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .about-quote {
+      font-family: "Instrument Serif", serif;
+      font-size: clamp(1.5rem, 4vw, 2.45rem);
+      line-height: 1.15;
+      max-width: 30ch;
+      margin-bottom: 1rem;
+    }
+
+    .about-bio {
+      color: var(--muted);
+      max-width: 70ch;
+      margin-bottom: 1.3rem;
+    }
+
+    .tags {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag {
+      font-family: "Geist Mono", monospace;
+      font-size: 0.78rem;
+      border: 1px solid rgba(26, 24, 20, 0.15);
+      background: rgba(255, 255, 255, 0.55);
+      border-radius: 999px;
+      padding: 0.3rem 0.62rem;
+      color: #3c362e;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 14px;
+      padding: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.4rem;
+      font-family: "Instrument Serif", serif;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-family: "Geist Mono", monospace;
+    }
+
+    .contact {
+      background: var(--dark-surface);
+      color: #f2efe8;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .contact .section-intro {
+      color: #d1c8b9;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn-dark {
+      background: #f2efe8;
+      color: #15130f;
+    }
+
+    .btn-dark:hover {
+      background: #ffffff;
+    }
+
+    .btn-dark-outline {
+      color: #f2efe8;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-dark-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    footer {
+      padding: 1.4rem 0 2.4rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+      transition-delay: var(--delay, 0ms);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .services-grid .service-card {
+        grid-column: span 12;
+      }
+
+      .steps-grid,
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --nav-h: 68px;
+      }
+
+      .nav-inner {
+        gap: 0.8rem;
+      }
+
+      .nav-links {
+        gap: 0.75rem;
+      }
+
+      .nav-link {
+        font-size: 0.84rem;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        min-height: 85svh;
+      }
+
+      .steps-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">Shahiryar.</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#services">Services</a></li>
+        <li><a class="nav-link" href="#projects">Projects</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-primary nav-cta">Let's talk</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="label">Islamabad, Pakistan</span>
+          <h1 class="hero-title">Shahiryar Siddique</h1>
+          <p class="hero-subtitle">AI Agent Developer &amp; Automation Specialist. I design practical AI systems for businesses and deliver fast, reliable execution for international remote projects.</p>
+          <div class="availability">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available for international remote projects
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View projects</a>
+            <a class="btn btn-outline" href="#contact">Book a call</a>
+          </div>
+          <div class="scroll-indicator">Scroll to explore</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="reveal">
+          <span class="label">Services</span>
+          <h2 class="section-title">Custom AI &amp; automation services</h2>
+          <p class="section-intro">From first workflow design to full delivery, each system is tailored for real-world usage, measurable value, and smooth handover.</p>
+        </div>
+        <div class="services-grid stagger-parent">
+          <article class="service-card reveal">
+            <h3>AI Chatbots &amp; Agents</h3>
+            <p>Flowise, Groq, GPT-4o, WhatsApp integrations for intelligent customer support and lead qualification.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Workflow Automation</h3>
+            <p>n8n, Make, Zapier, and API-driven workflows that reduce manual operations and speed up business output.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Document AI / RAG systems</h3>
+            <p>LangChain, Pinecone, and PDF pipelines for searchable knowledge bases and high-accuracy Q&amp;A experiences.</p>
+          </article>
+          <article class="service-card reveal">
+            <h3>Agent UI &amp; Dashboard</h3>
+            <p>Professional interfaces in HTML/CSS, React, and custom UI systems so teams can confidently use every workflow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="reveal">
+          <span class="label">Projects</span>
+          <h2 class="section-title">Selected implementations</h2>
+        </div>
+        <ul class="project-list stagger-parent">
+          <li class="project-item reveal">
+            <div>
+              <div class="project-top">
+                <div class="project-name">AI Resume Tailor Agent</div>
+                <div class="project-links">
+                  <a class="project-link" href="#" aria-label="GitHub link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a class="project-link" href="#" aria-label="External link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-meta">Flowise + Groq</div>
+            </div>
+            <span class="project-status">Live</span>
+          </li>
+          <li class="project-item reveal">
+            <div>
+              <div class="project-top">
+                <div class="project-name">Restaurant AI Assistant</div>
+                <div class="project-links">
+                  <a class="project-link" href="#" aria-label="GitHub link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a class="project-link" href="#" aria-label="External link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-meta">Flowise + WhatsApp</div>
+            </div>
+            <span class="project-status progress">In Progress</span>
+          </li>
+          <li class="project-item reveal">
+            <div>
+              <div class="project-top">
+                <div class="project-name">Document Q&amp;A Agent</div>
+                <div class="project-links">
+                  <a class="project-link" href="#" aria-label="GitHub link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a class="project-link" href="#" aria-label="External link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-meta">RAG + Pinecone</div>
+            </div>
+            <span class="project-status">Live</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="reveal">
+          <span class="label">How I Work</span>
+          <h2 class="section-title">Clear process, reliable outcomes</h2>
+        </div>
+        <div class="steps-grid stagger-parent">
+          <article class="step-card reveal">
+            <div class="step-number">01 / Discovery</div>
+            <h3>Discovery</h3>
+            <p>We define business goals, constraints, and success metrics before writing a single line of automation logic.</p>
+          </article>
+          <article class="step-card reveal">
+            <div class="step-number">02 / Build</div>
+            <h3>Build</h3>
+            <p>I implement robust agents and workflows with transparent checkpoints so you can review progress at each stage.</p>
+          </article>
+          <article class="step-card reveal">
+            <div class="step-number">03 / Deliver</div>
+            <h3>Deliver</h3>
+            <p>Systems are tested, documented, and deployed in a production-ready state with handover guidance.</p>
+          </article>
+          <article class="step-card reveal">
+            <div class="step-number">04 / Support</div>
+            <h3>Support</h3>
+            <p>Post-launch updates and optimization ensure your solution keeps performing as your requirements evolve.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="reveal">
+          <span class="label">About</span>
+          <p class="about-quote">"I build AI systems that feel simple for users and powerful for businesses."</p>
+          <p class="about-bio">I am Shahiryar Siddique, an AI Agent Developer &amp; Automation Specialist based in Islamabad, Pakistan. I help founders and teams launch practical AI products, from chat assistants and process automations to document intelligence tools. My focus is always on clean execution, fast communication, and business-ready results.</p>
+          <ul class="tags">
+            <li class="tag">Flowise</li>
+            <li class="tag">Groq</li>
+            <li class="tag">LangChain</li>
+            <li class="tag">Pinecone</li>
+            <li class="tag">n8n</li>
+            <li class="tag">Zapier</li>
+            <li class="tag">Make</li>
+            <li class="tag">WhatsApp API</li>
+            <li class="tag">React</li>
+            <li class="tag">HTML/CSS</li>
+          </ul>
+        </div>
+        <div class="stats-grid stagger-parent">
+          <div class="stat-box reveal">
+            <div class="stat-value">3+</div>
+            <div class="stat-label">Agents built</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-value">24h</div>
+            <div class="stat-label">Response time</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-value">$150</div>
+            <div class="stat-label">Starting price</div>
+          </div>
+          <div class="stat-box reveal">
+            <div class="stat-value">100%</div>
+            <div class="stat-label">On-time delivery</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="reveal">
+          <span class="label">Contact</span>
+          <h2 class="section-title">Let's build your next AI system</h2>
+          <p class="section-intro">Share your requirements and I will respond with a practical plan, timeline, and budget estimate.</p>
+        </div>
+        <div class="contact-actions stagger-parent">
+          <a class="btn btn-dark reveal" href="mailto:shahiryaribnsiddique@gmail.com">Email</a>
+          <a class="btn btn-dark-outline reveal" href="https://www.linkedin.com/search/results/all/?keywords=Shahiryar%20Siddique" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-dark-outline reveal" href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer">Fiverr</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Shahiryar Siddique. All rights reserved.</p>
+      <p>Islamabad, Pakistan</p>
+    </div>
+  </footer>
+
+  <script>
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+    // Smoothly reveal sections and cards with subtle staggered timing.
+    const revealElements = Array.from(document.querySelectorAll(".reveal"));
+    revealElements.forEach((el) => {
+      const parent = el.closest(".stagger-parent");
+      if (parent) {
+        const siblings = Array.from(parent.querySelectorAll(".reveal"));
+        const idx = siblings.indexOf(el);
+        el.style.setProperty("--delay", `${idx * 80}ms`);
+      }
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    revealElements.forEach((el) => revealObserver.observe(el));
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            const active = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", active);
+          });
+        });
+      },
+      {
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0.01
+      }
+    );
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
