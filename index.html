@@ -514,6 +514,124 @@
       border-color: rgba(255, 255, 255, 0.7);
     }
 
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      z-index: 1200;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .contact-modal {
+      width: min(100%, 480px);
+      background: #ffffff;
+      color: var(--text);
+      border-radius: 20px;
+      border: 1px solid #ece6de;
+      padding: 1.3rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      transform: translateY(14px) scale(0.98);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.open .contact-modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .modal-title {
+      font-family: "Instrument Serif", serif;
+      font-size: 1.8rem;
+      line-height: 1.1;
+    }
+
+    .modal-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #e2ddd8;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.75rem;
+      font-family: "Geist", system-ui, -apple-system, sans-serif;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid #e2ddd8;
+      border-radius: 10px;
+      padding: 12px 16px;
+      background: #f6f4f1;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: #1a1814;
+    }
+
+    .modal-submit {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      background: #1a1814;
+      color: #ffffff;
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-submit:hover {
+      opacity: 0.9;
+    }
+
+    .modal-success {
+      display: none;
+      margin-top: 0.25rem;
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      background: rgba(45, 106, 79, 0.1);
+      border: 1px solid rgba(45, 106, 79, 0.35);
+      color: var(--status);
+      font-size: 0.92rem;
+    }
+
+    .modal-success.show {
+      display: block;
+    }
+
     footer {
       padding: 1.4rem 0 2.4rem;
       color: var(--muted);
@@ -579,6 +697,14 @@
       .steps-grid,
       .stats-grid {
         grid-template-columns: 1fr;
+      }
+
+      .contact-modal {
+        padding: 1.05rem;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
       }
     }
 
@@ -796,7 +922,7 @@
           <p class="section-intro">Share your requirements and I will respond with a practical plan, timeline, and budget estimate.</p>
         </div>
         <div class="contact-actions stagger-parent">
-          <a class="btn btn-dark reveal" href="mailto:shahiryaribnsiddique@gmail.com">Email</a>
+          <a class="btn btn-dark reveal" href="#" id="emailTrigger">Email</a>
           <a class="btn btn-dark-outline reveal" href="https://www.linkedin.com/search/results/all/?keywords=Shahiryar%20Siddique" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a class="btn btn-dark-outline reveal" href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer">Fiverr</a>
         </div>
@@ -810,6 +936,23 @@
       <p>Islamabad, Pakistan</p>
     </div>
   </footer>
+
+  <div class="modal-overlay" id="contactModalOverlay" aria-hidden="true">
+    <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <div class="modal-top">
+        <h3 class="modal-title" id="contactModalTitle">Start your project</h3>
+        <button class="modal-close" id="contactModalClose" type="button" aria-label="Close modal">&times;</button>
+      </div>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/maqvlpbn" method="POST">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <input type="text" name="subject" placeholder="What do you need help with?" required>
+        <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+        <button class="modal-submit" id="contactFormSubmit" type="submit">Send Message</button>
+        <p class="modal-success" id="contactSuccessMessage">Thanks! I'll get back to you within 24 hours.</p>
+      </form>
+    </div>
+  </div>
 
   <script>
     const navLinks = Array.from(document.querySelectorAll(".nav-link"));
@@ -860,6 +1003,65 @@
     );
 
     sections.forEach((section) => sectionObserver.observe(section));
+
+    const emailTrigger = document.getElementById("emailTrigger");
+    const modalOverlay = document.getElementById("contactModalOverlay");
+    const modalClose = document.getElementById("contactModalClose");
+    const contactForm = document.getElementById("contactForm");
+    const contactSuccessMessage = document.getElementById("contactSuccessMessage");
+    const contactFormSubmit = document.getElementById("contactFormSubmit");
+
+    function openModal() {
+      modalOverlay.classList.add("open");
+      modalOverlay.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal() {
+      modalOverlay.classList.remove("open");
+      modalOverlay.setAttribute("aria-hidden", "true");
+      contactSuccessMessage.classList.remove("show");
+      contactForm.style.display = "grid";
+      contactFormSubmit.disabled = false;
+      contactFormSubmit.textContent = "Send Message";
+    }
+
+    emailTrigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    });
+
+    modalClose.addEventListener("click", closeModal);
+
+    modalOverlay.addEventListener("click", (event) => {
+      if (event.target === modalOverlay) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modalOverlay.classList.contains("open")) {
+        closeModal();
+      }
+    });
+
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      contactFormSubmit.disabled = true;
+      contactFormSubmit.textContent = "Sending...";
+
+      const formData = new FormData(contactForm);
+      await fetch(contactForm.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      contactSuccessMessage.classList.add("show");
+      contactForm.reset();
+      setTimeout(closeModal, 3000);
+    });
 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
