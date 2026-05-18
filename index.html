@@ -143,7 +143,21 @@ font-weight='700' fill='%2364ffda'>S</text>
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1.5rem;
+      gap: 0;
+    }
+
+    .top-nav .nav-inner.container {
+      width: 100%;
+      max-width: none;
+      margin-inline: 0;
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
     .hex-logo {
@@ -203,38 +217,27 @@ font-weight='700' fill='%2364ffda'>S</text>
       transform: translateY(-2px);
     }
 
-    .btn-nav-cta {
+    .btn-nav-cta,
+    .btn-nav-resume {
       font-family: var(--font-mono);
+      font-size: 13px;
+      padding: 10px 20px;
       background: transparent;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      padding: 0.65rem 1.15rem;
+      color: #64ffda;
+      border: 1px solid #64ffda;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
 
-    .btn-nav-cta:hover {
+    .btn-nav-cta:hover,
+    .btn-nav-resume:hover {
       background: rgba(100, 255, 218, 0.1);
-      box-shadow: 0 0 20px rgba(100, 255, 218, 0.15);
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-    }
-
-    .btn-nav-resume {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      background: transparent;
-      color: #64ffda;
-      border: 1px solid #64ffda;
-      padding: 8px 18px;
-      border-radius: 4px;
-      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-    }
-
-    .btn-nav-resume:hover {
-      background: rgba(100, 255, 218, 0.1);
     }
 
     .btn-hero-cta {
@@ -268,7 +271,7 @@ font-weight='700' fill='%2364ffda'>S</text>
       min-height: 100vh;
       display: flex;
       align-items: flex-start;
-      padding-top: 90px;
+      padding-top: 120px;
       padding-bottom: 3rem;
     }
 
@@ -278,10 +281,10 @@ font-weight='700' fill='%2364ffda'>S</text>
     }
 
     .hero-content {
-      margin-left: auto;
+      margin-left: 0;
       margin-right: auto;
-      max-width: 800px;
-      padding-left: 40px;
+      max-width: 650px;
+      padding-left: 80px;
     }
 
     .hero .label {
@@ -296,6 +299,7 @@ font-weight='700' fill='%2364ffda'>S</text>
       letter-spacing: -0.02em;
       display: flex;
       flex-direction: column;
+      gap: 0.5rem;
     }
 
     .hero-line {
@@ -1078,8 +1082,7 @@ font-weight='700' fill='%2364ffda'>S</text>
         display: none;
       }
 
-      .nav-links,
-      .nav-actions {
+      .nav-right {
         display: none;
       }
 
@@ -1131,15 +1134,17 @@ font-weight='700' fill='%2364ffda'>S</text>
           <text x="50" y="62" text-anchor="middle" font-size="42" font-family="Inter, sans-serif" font-weight="600" fill="currentColor">S</text>
         </svg>
       </a>
-      <ul class="nav-links">
-        <li><a class="nav-link" href="#services"><span class="nav-num">01.</span> Services</a></li>
-        <li><a class="nav-link" href="#projects"><span class="nav-num">02.</span> Projects</a></li>
-        <li><a class="nav-link" href="#about"><span class="nav-num">03.</span> About</a></li>
-        <li><a class="nav-link" href="#contact"><span class="nav-num">04.</span> Contact</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
-        <a href="#contact" class="btn btn-nav-cta nav-cta">Let's talk</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a class="nav-link" href="#services"><span class="nav-num">01.</span> Services</a></li>
+          <li><a class="nav-link" href="#projects"><span class="nav-num">02.</span> Projects</a></li>
+          <li><a class="nav-link" href="#about"><span class="nav-num">03.</span> About</a></li>
+          <li><a class="nav-link" href="#contact"><span class="nav-num">04.</span> Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="./Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="#contact" class="btn btn-nav-cta nav-cta">Let's talk</a>
+        </div>
       </div>
       <button type="button" class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
@@ -1154,7 +1159,7 @@ font-weight='700' fill='%2364ffda'>S</text>
       <li><a class="nav-link" href="#contact"><span class="nav-num">04.</span> Contact</a></li>
     </ul>
     <div class="mobile-menu-actions">
-      <a href="Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="./Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
       <a href="#contact" class="btn btn-nav-cta">Let's talk</a>
     </div>
   </div>
