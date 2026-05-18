@@ -116,10 +116,19 @@
       gap: 1.5rem;
     }
 
-    .logo {
-      font-family: "Instrument Serif", serif;
-      font-size: 1.55rem;
-      letter-spacing: 0.02em;
+    .hex-logo {
+      width: 36px;
+      height: 36px;
+      color: #1a1814;
+      transition: color 0.3s ease, filter 0.3s ease,
+                  transform 0.3s ease;
+      display: block;
+    }
+
+    .nav-logo:hover .hex-logo {
+      color: #c8a96e;
+      filter: drop-shadow(0px 4px 12px rgba(200, 169, 110, 0.6));
+      transform: translateY(-2px);
     }
 
     .nav-links {
@@ -723,7 +732,12 @@
 <body>
   <header class="top-nav">
     <div class="container nav-inner">
-      <a href="#home" class="logo">Shahiryar.</a>
+      <a href="#home" class="nav-logo">
+        <svg class="hex-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,2 93,26 93,74 50,98 7,74 7,26" fill="none" stroke="currentColor" stroke-width="5"/>
+          <text x="50" y="62" text-anchor="middle" font-size="42" font-family="Instrument Serif, serif" font-weight="400" fill="currentColor">S</text>
+        </svg>
+      </a>
       <ul class="nav-links">
         <li><a class="nav-link" href="#services">Services</a></li>
         <li><a class="nav-link" href="#projects">Projects</a></li>
