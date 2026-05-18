@@ -130,6 +130,12 @@ font-weight='700' fill='%2364ffda'>S</text>
       border-bottom: none;
       backdrop-filter: blur(10px);
       background: rgba(10, 25, 47, 0.85);
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .top-nav.top-nav--hidden {
+      transform: translateY(-100%);
     }
 
     .nav-inner {
@@ -238,11 +244,11 @@ font-weight='700' fill='%2364ffda'>S</text>
     }
 
     .hero {
-      min-height: 100svh;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       padding-top: 160px;
-      padding-bottom: 2rem;
+      padding-bottom: 3rem;
     }
 
     .hero-grid {
@@ -330,8 +336,30 @@ font-weight='700' fill='%2364ffda'>S</text>
       gap: 0.8rem;
     }
 
+    .btn-hero-linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 2px solid #64ffda;
+      color: #64ffda;
+      font-family: var(--font-mono);
+      padding: 16px 32px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-linkedin:hover {
+      background: #64ffda;
+      color: #0a192f;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+    }
+
     .scroll-indicator {
-      margin-top: 2.2rem;
+      margin-top: 2.5rem;
       color: var(--muted);
       font-size: 0.8rem;
       font-family: var(--font-mono);
@@ -893,13 +921,8 @@ font-weight='700' fill='%2364ffda'>S</text>
             <span class="hero-line hero-line-tagline">I build AI agents.</span>
           </h1>
           <p class="hero-subtitle">AI Agent Developer &amp; Automation Specialist. I design practical AI systems for businesses and deliver fast, reliable execution for international remote projects.</p>
-          <div class="availability">
-            <span class="status-dot" aria-hidden="true"></span>
-            Available for international remote projects
-          </div>
           <div class="hero-actions">
-            <a class="btn btn-hero-cta" href="#projects">View projects</a>
-            <a class="btn btn-outline hero-cta-secondary" href="#contact">Book a call</a>
+            <a class="btn-hero-linkedin" href="https://www.linkedin.com/in/shahiryar-siddique-33687b352/" target="_blank" rel="noopener noreferrer">Let's Connect on LinkedIn</a>
           </div>
           <div class="scroll-indicator">Scroll to explore</div>
         </div>
@@ -1208,6 +1231,23 @@ font-weight='700' fill='%2364ffda'>S</text>
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const topNav = document.querySelector(".top-nav");
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 80) {
+          topNav.classList.add("top-nav--hidden");
+        } else {
+          topNav.classList.remove("top-nav--hidden");
+        }
+        lastScrollY = currentScrollY;
+      },
+      { passive: true }
+    );
   </script>
 </body>
 </html>
