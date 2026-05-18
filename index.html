@@ -216,6 +216,27 @@ font-weight='700' fill='%2364ffda'>S</text>
       box-shadow: 0 0 20px rgba(100, 255, 218, 0.15);
     }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav-resume {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      background: transparent;
+      color: #64ffda;
+      border: 1px solid #64ffda;
+      padding: 8px 18px;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-nav-resume:hover {
+      background: rgba(100, 255, 218, 0.1);
+    }
+
     .btn-hero-cta {
       font-family: var(--font-mono);
       background: transparent;
@@ -256,6 +277,13 @@ font-weight='700' fill='%2364ffda'>S</text>
       gap: 2rem;
     }
 
+    .hero-content {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 800px;
+      padding-left: 40px;
+    }
+
     .hero .label {
       font-size: clamp(0.9rem, 2vw, 1rem);
       margin-bottom: 1.25rem;
@@ -264,7 +292,6 @@ font-weight='700' fill='%2364ffda'>S</text>
     .hero-title {
       font-family: var(--font-sans);
       font-weight: 800;
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
       line-height: 1.1;
       letter-spacing: -0.02em;
       display: flex;
@@ -277,10 +304,12 @@ font-weight='700' fill='%2364ffda'>S</text>
 
     .hero-line-name {
       color: var(--text);
+      font-size: clamp(36px, 6vw, 64px);
     }
 
     .hero-line-tagline {
       color: var(--muted);
+      font-size: clamp(32px, 5vw, 58px);
     }
 
     .hero-subtitle {
@@ -854,14 +883,6 @@ font-weight='700' fill='%2364ffda'>S</text>
         font-size: 0.72rem;
       }
 
-      .nav-links li:last-child {
-        display: none;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-
       .hero {
         min-height: 85svh;
       }
@@ -928,9 +949,142 @@ font-weight='700' fill='%2364ffda'>S</text>
       color: #64ffda;
     }
 
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: #64ffda;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.25rem;
+      margin-left: auto;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: min(100%, 320px);
+      height: 100%;
+      background: #0a192f;
+      z-index: 1100;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: #64ffda;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0.25rem;
+    }
+
+    .mobile-menu-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-menu-links .nav-link {
+      font-size: 1.25rem;
+      color: #64ffda;
+    }
+
+    .mobile-menu-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mobile-menu-actions .btn-nav-resume,
+    .mobile-menu-actions .btn-nav-cta {
+      font-size: 0.9rem;
+      padding: 0.75rem 1.5rem;
+    }
+
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #0a192f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease;
+    }
+
+    #loader.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-svg {
+      width: 80px;
+      height: 80px;
+    }
+
+    .loader-hex-stroke {
+      stroke-dasharray: 296;
+      stroke-dashoffset: 296;
+      animation: loaderDrawHex 1.2s ease forwards;
+    }
+
+    @keyframes loaderDrawHex {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .loader-s {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .loader-s.visible {
+      opacity: 1;
+    }
+
+    body:not(.page-ready) > *:not(#loader) {
+      opacity: 0;
+    }
+
+    body.page-ready > *:not(#loader) {
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
     @media (max-width: 768px) {
       .side-fixed {
         display: none;
+      }
+
+      .nav-links,
+      .nav-actions {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: block;
       }
     }
 
@@ -947,6 +1101,13 @@ font-weight='700' fill='%2364ffda'>S</text>
   </style>
 </head>
 <body>
+  <div id="loader">
+    <svg class="loader-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon class="loader-hex-stroke" points="50,2 93,26 93,74 50,98 7,74 7,26" fill="none" stroke="#64ffda" stroke-width="4"/>
+      <text class="loader-s" x="50" y="62" text-anchor="middle" font-size="42" font-family="Inter, sans-serif" font-weight="700" fill="#64ffda">S</text>
+    </svg>
+  </div>
+
   <aside class="side-fixed side-fixed--left" aria-label="Social links">
     <a class="side-icon" href="https://www.linkedin.com/in/shahiryar-siddique-33687b352/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -976,14 +1137,32 @@ font-weight='700' fill='%2364ffda'>S</text>
         <li><a class="nav-link" href="#about"><span class="nav-num">03.</span> About</a></li>
         <li><a class="nav-link" href="#contact"><span class="nav-num">04.</span> Contact</a></li>
       </ul>
-      <a href="#contact" class="btn btn-nav-cta nav-cta">Let's talk</a>
+      <div class="nav-actions">
+        <a href="Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
+        <a href="#contact" class="btn btn-nav-cta nav-cta">Let's talk</a>
+      </div>
+      <button type="button" class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">☰</button>
     </div>
   </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button type="button" class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">&times;</button>
+    <ul class="mobile-menu-links">
+      <li><a class="nav-link" href="#services"><span class="nav-num">01.</span> Services</a></li>
+      <li><a class="nav-link" href="#projects"><span class="nav-num">02.</span> Projects</a></li>
+      <li><a class="nav-link" href="#about"><span class="nav-num">03.</span> About</a></li>
+      <li><a class="nav-link" href="#contact"><span class="nav-num">04.</span> Contact</a></li>
+    </ul>
+    <div class="mobile-menu-actions">
+      <a href="Shahiryar_Siddique_CV.pdf" class="btn btn-nav-resume" target="_blank" rel="noopener noreferrer">Resume</a>
+      <a href="#contact" class="btn btn-nav-cta">Let's talk</a>
+    </div>
+  </div>
 
   <main>
     <section class="hero section" id="home">
       <div class="container hero-grid">
-        <div class="reveal">
+        <div class="reveal hero-content">
           <span class="label">Hi, my name is</span>
           <h1 class="hero-title">
             <span class="hero-line hero-line-name">Shahiryar Siddique.</span>
@@ -1300,6 +1479,45 @@ font-weight='700' fill='%2364ffda'>S</text>
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const loader = document.getElementById("loader");
+    const loaderS = document.querySelector(".loader-s");
+
+    setTimeout(() => {
+      loaderS.classList.add("visible");
+    }, 1200);
+
+    setTimeout(() => {
+      loader.classList.add("fade-out");
+      document.body.classList.add("page-ready");
+    }, 1800);
+
+    setTimeout(() => {
+      loader.remove();
+    }, 2400);
+
+    const navHamburger = document.getElementById("navHamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+    function openMobileMenu() {
+      mobileMenu.classList.add("open");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      navHamburger.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove("open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      navHamburger.setAttribute("aria-expanded", "false");
+    }
+
+    navHamburger.addEventListener("click", openMobileMenu);
+    mobileMenuClose.addEventListener("click", closeMobileMenu);
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
+    });
 
     const topNav = document.querySelector(".top-nav");
     let lastScrollY = window.scrollY;
